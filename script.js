@@ -11,8 +11,10 @@ $(document).ready(function(){
   
   var now= moment();
   
+  
   var schedule = {
     time : [
+      "8:00 AM",
       "9:00 AM",
       "10:00 AM",
       "11:00 AM",
@@ -30,7 +32,7 @@ $(document).ready(function(){
       "11:00 PM",
       "11:30 PM"
     ],
-    userEntry: ["","","","","","","","","","","","","","","",""]
+    userEntry: ["","","","","","","","","","","","","","","","",""]
   };
 
 
@@ -49,17 +51,48 @@ $(document).ready(function(){
       $(divEl).append(h4El);
       $(divEl).append(inputEl);
       $(divEl).append(buttonEl);
+
+      // .isBetween did not work with this layout
+      //   if (moment(schedule.time[i],'h:mm a').isBefore(now)){
+      //   inputEl.addClass("past");
+      // } else if (moment(schedule.time[i], 'h a').isBetween("9:01", "9:59")){
+      //   inputEl.addClass("present");
+      //   } else if (moment(schedule.time[i],'h:mm a').isAfter(now)) {
+      //   inputEl.addClass("future");
+      //   }
+      //   console.log(schedule.time[i]);
       
-        if (moment(schedule.time[i],'h:mmA').isBefore(now)){
-        inputEl.addClass("past");
-        } else if (moment(schedule.time[i], "h").isSame(now)){
-        inputEl.addClass("present");
-        } else if (moment(schedule.time[i],'h:mmA').isAfter(now)) {
-        inputEl.addClass("future");
-        }
+      var hourPast= hourPast < now;
+      var hourNow = now;
+      var hourFuture = hourFuture < now;
+
+      // var hourNow = currentTime;
+
+      // console.log(hourNow);
+      // console.log(now);
+      
+        if (hourNow == now){
+          inputEl.addClass("present");  
+        }else if (hourNow < now){
+          inputEl.addClass("future");
+        } else {inputEl.addClass("past");}
     }
-  }
-  
+
+      // if (moment(schedule.time[i],'h(:mm) a').isBefore(now)){
+      //   inputEl.addClass("past");
+      // } else if (moment(schedule.time[i], 'h')===(now)){
+      // inputEl.addClass("present");
+      // } else if (moment(schedule.time[i],'h(:mm) a').isAfter(now)) {
+      //   inputEl.addClass("future");  
+    // === does not work, .isSame is not working either
+      
+     
+        // Console logging is showing that i is not define in console.log
+        // console.log(schedule.time[i]);
+    }
+    // console.log("63  "+now.format( "h:mm a"));
+    // console.log(schedule.time);
+    // console.log(isBetween);
   render()
 });
 //       $(".saveBtn").on("click", function(){
@@ -104,3 +137,4 @@ $(document).ready(function(){
 //     color[i].className= ".present";
 //   }
 // }
+
