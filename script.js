@@ -87,6 +87,11 @@ $(document).ready(function(){
         // key=time & value=""
         localStorage.setItem(schedule.time[i].display, "")
         //upon click replace the userEntry with the input
+      var userEntry = "";
+      var resEntr= userEntry.replace(inputEl.val())
+      console.log(inputEl.val())
+
+      
         
     }
     $(document).on("click", ".saveBtn", function(){
