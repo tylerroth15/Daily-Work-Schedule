@@ -27,7 +27,8 @@ $(document).ready(function(){
       {
         display: "12 PM",
         value: 12
-      }, {
+      }, 
+      {
         display: "1 PM",
         value: 13
       }, 
@@ -62,23 +63,15 @@ $(document).ready(function(){
       h4El.addClass("timeline");
       var inputEl = $("<input>");
       inputEl.addClass("description");
-      var buttonEl= $("<button>").attr("data-input", schedule.time[i]).addClass("btn btn-default far fa-save saveBtn");
+      var buttonEl= $("<button>").attr("data-input", schedule.time[i].dispaly).addClass("btn btn-default far fa-save saveBtn");
       $(h4El).text(schedule.time[i].display);
 
       $(".time-block").append(divEl);
       $(divEl).append(h4El);
       $(divEl).append(inputEl);
       $(divEl).append(buttonEl);
-
-      // var hourPast= hourPast < now;
-      // var hourNow = now
-      // var future= future > now;
-
-      
-
-      // console.log(hourNow);
+    
       console.log(now)
-      // console.log(now);
 
         if(schedule.time[i].value< now){
         inputEl.addClass("past");
@@ -94,9 +87,14 @@ $(document).ready(function(){
     }
     
   }
+ 
+  // function localRender(){
+    
+  // localStorage.setItem(schedule)(schedule.time.display[i])
+  // }
+  
 
   render()
-     
   
 });
 
