@@ -12,16 +12,41 @@ $(document).ready(function(){
 
   var schedule = {
     time : [
-      "9 AM",
-      "10 AM",
-      "11 AM",
-      "12 PM",
-      "1 PM",
-      "2 PM",
-      "3 PM",
-      "4 PM",
-      "5 PM",
-     
+      {
+        display: "9 AM",
+        value: 9
+      },
+      {
+        display: "10 AM",
+        value: 10
+      }, 
+      {
+        display: "11 AM",
+        value: 11
+      }, 
+      {
+        display: "12 PM",
+        value: 12
+      }, {
+        display: "1 PM",
+        value: 13
+      }, 
+      {
+        display: "2 PM",
+        value: 14
+      },
+      {
+        display: "3 PM",
+        value: 15
+      },
+      {
+        display: "4 PM",
+        value: 16
+      },
+      {
+        display: "5 PM",
+        value: 17
+      },
     ],
     userEntry: ["","","","","","","","",""]
     
@@ -30,23 +55,24 @@ $(document).ready(function(){
 
   function render(){
     for( let i = 0; i < schedule.time.length; i++){
+      
       var divEl = $("<div>");
       divEl.addClass("row hour");
       var h4El = $("<h4>");
       h4El.addClass("timeline");
       var inputEl = $("<input>");
       inputEl.addClass("description");
-      var buttonEl= $("<button>").attr("data-input", schedule.time.length[i]).addClass("btn btn-default far fa-save saveBtn");
-      $(h4El).text(schedule.time[i]);
+      var buttonEl= $("<button>").attr("data-input", schedule.time[i]).addClass("btn btn-default far fa-save saveBtn");
+      $(h4El).text(schedule.time[i].display);
 
       $(".time-block").append(divEl);
       $(divEl).append(h4El);
       $(divEl).append(inputEl);
       $(divEl).append(buttonEl);
 
-      var hourPast= hourPast < now;
-      var hourNow = now
-      var future= future > now;
+      // var hourPast= hourPast < now;
+      // var hourNow = now
+      // var future= future > now;
 
       
 
@@ -54,12 +80,12 @@ $(document).ready(function(){
       console.log(now)
       // console.log(now);
 
-        if(hourNow < now){
+        if(schedule.time[i].value< now){
         inputEl.addClass("past");
-        } else if (hourNow === now ){
+        } else if (schedule.time[i].value=== now ){
           inputEl.removeClass("past");
           inputEl.addClass("present");
-        } else {(hourNow > now) 
+        } else {(schedule.time[i].value > now) 
           inputEl.removeClass("past");
           inputEl.removeClass("present");
           inputEl.addClass("future");
