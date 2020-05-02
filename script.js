@@ -5,6 +5,7 @@ var eDisplayMoment=
 document.getElementById('currentDay');
 eDisplayMoment.innerHTML = NowMoment;
 
+const test= false; 
 $(document).ready(function(){
 
   var now= moment().hours();
@@ -82,17 +83,18 @@ $(document).ready(function(){
           inputEl.removeClass("past");
           inputEl.removeClass("present");
           inputEl.addClass("future");
-        }
+        };
+        // key=time & value=""
+        localStorage.setItem(schedule.time[i].display, "")
+        //upon click replace the userEntry with the input
         
     }
+    $(document).on("click", ".saveBtn", function(){
+      console.log("__________________")
+      console.log("clicked");
+  });
     
   }
- 
-  // function localRender(){
-    
-  // localStorage.setItem(schedule)(schedule.time.display[i])
-  // }
-  
 
   render()
   
